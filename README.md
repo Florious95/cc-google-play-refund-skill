@@ -1,6 +1,6 @@
 **English** | [简体中文](README.zh.md)
 
-# google-play-refund-skill
+# cc-google-play-refund-skill
 
 An [Agent Skill](https://agentskills.io/specification) for Claude Code, Cursor, Codex and other coding agents. It helps you get **Google Play** to refund a **Claude (Anthropic) subscription bought through Google Play** after the Claude account was **banned or suspended**, once **Anthropic has already refused the refund in writing**.
 
@@ -29,9 +29,9 @@ Pick **one** option. The skill folder must be named `google-play-refund` (the sa
 ### Option A - `npx skills` (cross-agent installer)
 
 ```bash
-npx skills add Florious95/google-play-refund-skill                                   # this project: ./.agents/skills (Codex, Cursor, Copilot …)
-npx skills add Florious95/google-play-refund-skill -g                                # global: ~/.agents/skills
-npx skills add Florious95/google-play-refund-skill -a claude-code -a cursor -a codex # also link into .claude/skills for Claude Code (add -g for ~/.claude/skills)
+npx skills add Florious95/cc-google-play-refund-skill                                   # this project: ./.agents/skills (Codex, Cursor, Copilot …)
+npx skills add Florious95/cc-google-play-refund-skill -g                                # global: ~/.agents/skills
+npx skills add Florious95/cc-google-play-refund-skill -a claude-code -a cursor -a codex # also link into .claude/skills for Claude Code (add -g for ~/.claude/skills)
 ```
 
 Claude Code only reads `.claude/skills`. If the installer does not detect Claude Code on your machine, pass `-a claude-code` so it creates the `.claude/skills/google-play-refund` link. Without `-a`, a non-interactive `-g` run may list harmless failures for agents that have no global skills directory. ([vercel-labs/skills](https://github.com/vercel-labs/skills). It needs a recent Node.js; v1.7.x requires Node ≥ 22.20. On older Node you can run `npx -p node@22 -p skills -- skills add …`.)
@@ -41,8 +41,8 @@ Claude Code only reads `.claude/skills`. If the installer does not detect Claude
 From a clone:
 
 ```bash
-git clone https://github.com/Florious95/google-play-refund-skill.git
-cd google-play-refund-skill
+git clone https://github.com/Florious95/cc-google-play-refund-skill.git
+cd cc-google-play-refund-skill
 ./install.sh --project            # ./.agents/skills/google-play-refund   (Codex, Cursor, Copilot, Gemini CLI … in the current project)
 ./install.sh --global             # ~/.agents/skills/google-play-refund   (Codex, Cursor; all projects)
 ./install.sh --claude             # ~/.claude/skills/google-play-refund   (Claude Code personal; Cursor reads it too)
@@ -53,7 +53,7 @@ cd google-play-refund-skill
 Or without cloning:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/Florious95/google-play-refund-skill/main/install.sh | bash -s -- --claude
+curl -fsSL https://raw.githubusercontent.com/Florious95/cc-google-play-refund-skill/main/install.sh | bash -s -- --claude
 ```
 
 `--project` and `--claude --project` install into the directory you run the command from. Flags can be combined, for example `--global --claude`. Use `--force` to replace an existing install.

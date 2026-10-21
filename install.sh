@@ -9,11 +9,11 @@
 #
 # Several targets can be combined, e.g. --global --claude.
 # Remote one-liner:
-#   curl -fsSL https://raw.githubusercontent.com/Florious95/google-play-refund-skill/main/install.sh | bash -s -- --claude
+#   curl -fsSL https://raw.githubusercontent.com/Florious95/cc-google-play-refund-skill/main/install.sh | bash -s -- --claude
 set -euo pipefail
 
 NAME="google-play-refund"
-REPO_URL="${GPRS_REPO_URL:-https://github.com/Florious95/google-play-refund-skill.git}"
+REPO_URL="${GPRS_REPO_URL:-https://github.com/Florious95/cc-google-play-refund-skill.git}"
 FILES=(SKILL.md scripts examples)
 
 usage() {

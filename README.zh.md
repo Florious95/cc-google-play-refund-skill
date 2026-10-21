@@ -1,6 +1,6 @@
 [English](README.md) | **简体中文**
 
-# google-play-refund-skill
+# cc-google-play-refund-skill
 
 这是一个 [Agent Skill](https://agentskills.io/specification)，适用于 Claude Code、Cursor、Codex 等编程代理。它帮助你在以下情况下让 **Google Play** 退款：你**通过 Google Play 购买了 Claude（Anthropic）订阅**，随后 Claude 账号**被封禁或停用**，而且 **Anthropic 已经书面拒绝退款**。
 
@@ -29,9 +29,9 @@
 ### 方式 A：`npx skills`（跨代理安装器）
 
 ```bash
-npx skills add Florious95/google-play-refund-skill                                   # 当前项目：./.agents/skills（Codex、Cursor、Copilot 等）
-npx skills add Florious95/google-play-refund-skill -g                                # 全局：~/.agents/skills
-npx skills add Florious95/google-play-refund-skill -a claude-code -a cursor -a codex # 同时链接到 .claude/skills 供 Claude Code 使用（加 -g 则为 ~/.claude/skills）
+npx skills add Florious95/cc-google-play-refund-skill                                   # 当前项目：./.agents/skills（Codex、Cursor、Copilot 等）
+npx skills add Florious95/cc-google-play-refund-skill -g                                # 全局：~/.agents/skills
+npx skills add Florious95/cc-google-play-refund-skill -a claude-code -a cursor -a codex # 同时链接到 .claude/skills 供 Claude Code 使用（加 -g 则为 ~/.claude/skills）
 ```
 
 Claude Code 只读取 `.claude/skills`。如果安装器没有检测到你机器上的 Claude Code，请加上 `-a claude-code`，让它创建 `.claude/skills/google-play-refund` 链接。不带 `-a` 的非交互式 `-g` 运行，可能会对没有全局技能目录的代理报出无害的失败。（[vercel-labs/skills](https://github.com/vercel-labs/skills)。需要较新的 Node.js；v1.7.x 要求 Node ≥ 22.20。Node 版本较旧时可运行 `npx -p node@22 -p skills -- skills add …`。）
@@ -41,8 +41,8 @@ Claude Code 只读取 `.claude/skills`。如果安装器没有检测到你机器
 在克隆下来的仓库中运行：
 
 ```bash
-git clone https://github.com/Florious95/google-play-refund-skill.git
-cd google-play-refund-skill
+git clone https://github.com/Florious95/cc-google-play-refund-skill.git
+cd cc-google-play-refund-skill
 ./install.sh --project            # ./.agents/skills/google-play-refund   （当前项目中的 Codex、Cursor、Copilot、Gemini CLI 等）
 ./install.sh --global             # ~/.agents/skills/google-play-refund   （Codex、Cursor；所有项目）
 ./install.sh --claude             # ~/.claude/skills/google-play-refund   （Claude Code 个人目录；Cursor 也会读取）
@@ -53,7 +53,7 @@ cd google-play-refund-skill
 或者不克隆，直接运行：
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/Florious95/google-play-refund-skill/main/install.sh | bash -s -- --claude
+curl -fsSL https://raw.githubusercontent.com/Florious95/cc-google-play-refund-skill/main/install.sh | bash -s -- --claude
 ```
 
 `--project` 和 `--claude --project` 会装到你运行命令时所在的目录。参数可以组合，例如 `--global --claude`。用 `--force` 覆盖已有的安装。
