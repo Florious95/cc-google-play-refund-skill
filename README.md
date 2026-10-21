@@ -4,7 +4,7 @@
 
 An [Agent Skill](https://agentskills.io/specification) for Claude Code, Cursor, Codex and other coding agents. It helps you get **Google Play** to refund a **Claude (Anthropic) subscription bought through Google Play** after the Claude account was **banned or suspended**. It works best once **Anthropic has refused the refund in writing**, and it helps you ask Anthropic first if you haven't yet.
 
-It is based on real cases handled through the Google Play Help Center. In one of them, a specialist approved a manual refund about three days after the complete message was sent. The skill teaches your agent to do the same thing:
+It is based on two real cases handled through the Google Play Help Center. In both, Google Play refunded the order in full: about three days after the complete message in the first case, and about five days after it in the second. The second refund arrived as an order-cancellation receipt, hours after a template "contact the developer" denial, so such a denial is not necessarily final. The skill teaches your agent to do the same thing:
 
 1. Check that it can read your Gmail and take screenshots. If it can't, it looks up how to add those on *your* agent platform and gives you options.
 2. Check the preconditions: the Play receipt, the ban notice, and Anthropic's written answer. If Anthropic hasn't answered yet, the agent helps you ask them (Claude Help Center or support+android@anthropic.com) before going to Google.

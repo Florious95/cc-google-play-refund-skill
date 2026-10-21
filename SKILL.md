@@ -7,7 +7,7 @@ compatibility: Needs direct Gmail access (read, and ideally draft or send) and t
 
 # Google Play refund for a banned Claude subscription
 
-The goal is a refund of one Google Play order (`GPA.xxxx-xxxx-xxxx-xxxxx`) for a Claude subscription. It works best once Anthropic has refused the refund in writing; Step 1 helps get that answer if it is missing. Google Play billed the user, so Google Play can refund the order. The working approach is **one complete, well-evidenced, polite message** that gives a Google Play support specialist everything they need in a single read. In one real case this approach led to a manual refund: a specialist approved it about three days after the full message, and the refund was submitted for processing two days later. Outcomes are not guaranteed and vary by case and region.
+The goal is a refund of one Google Play order (`GPA.xxxx-xxxx-xxxx-xxxxx`) for a Claude subscription. It works best once Anthropic has refused the refund in writing; Step 1 helps get that answer if it is missing. Google Play billed the user, so Google Play can refund the order. The working approach is **one complete, well-evidenced, polite message** that gives a Google Play support specialist everything they need in a single read. In two real cases, Google Play refunded the order in full. In the first, a specialist approved a manual refund about three days after the full message. In the second, the refund came about five days after the full message. It arrived as an order-cancellation receipt from `googleplay-noreply@google.com`, hours after a template "contact the developer" denial. So a template denial after the full message is not necessarily final. Outcomes are not guaranteed and vary by case and region.
 
 ## Ground rules (apply throughout)
 
@@ -161,6 +161,7 @@ Do not submit the same request in several channels at once.
 
 - Tell the user what was sent, when, where, and with which attachments.
 - In the real cases, the escalation team first asked for 24 to 48 hours. Then they said a manual refund could be requested and asked for the **preferred refund method**. Answer such questions briefly and only with what is asked, for example "please refund it to the card ending in NNNN that was charged for this order". Get the user's OK before replying. Then a confirmation arrived saying the refund had been submitted for processing, with 5 to 10 business days to appear.
+- The refund confirmation may arrive only as an **order cancellation receipt** from `googleplay-noreply@google.com` (it says the subscription was cancelled and the payment will be refunded, with the refund amount), not as a reply in the case thread. Search for it before reacting to any denial.
 - If Google asks for screenshots of the developer conversation, make sure both the developer's address and the user's address are visible.
 - If a generic reply arrives that does not engage with the facts, write one short, polite reply. Point to the earlier message and its exhibits and ask for a specialist review. Do not rewrite the whole case and do not start a back-and-forth.
 - Keep the case sheet up to date with each reply's date and time.

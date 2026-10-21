@@ -4,7 +4,7 @@
 
 这是一个 [Agent Skill](https://agentskills.io/specification)，适用于 Claude Code、Cursor、Codex 等编程代理。它帮助你在以下情况下让 **Google Play** 退款：你**通过 Google Play 购买了 Claude（Anthropic）订阅**，随后 Claude 账号**被封禁或停用**。在 **Anthropic 已经书面拒绝退款**之后使用效果最好；如果你还没问过 Anthropic，它会先帮你去问。
 
-本技能基于通过 Google Play 帮助中心处理的真实案例。其中一例在完整的信发出约三天后，专员批准了人工退款。本技能教你的代理照这个方法做：
+本技能基于两个通过 Google Play 帮助中心处理的真实案例。两例中 Google Play 都全额退款：第一例在完整的信发出约三天后获批，第二例在约五天后退款。第二例的退款是以一封订单取消收据的形式到达的，而就在几个小时前还收到过一封「请联系开发者」的模板拒信，所以这种模板拒信不一定是最终结果。本技能教你的代理照这个方法做：
 
 1. 检查它能否读取你的 Gmail、能否截图。不能的话，它会查清在*你所用的*代理平台上如何添加这些能力，并给你几个选项。
 2. 检查前提条件：Play 收据、封号通知，以及 Anthropic 的书面答复。如果 Anthropic 还没答复，代理会先帮你联系他们（Claude 帮助中心或 support+android@anthropic.com），再去找 Google。
