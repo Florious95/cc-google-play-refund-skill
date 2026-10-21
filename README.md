@@ -4,14 +4,14 @@
 
 An [Agent Skill](https://agentskills.io/specification) for Claude Code, Cursor, Codex and other coding agents. It helps you get **Google Play** to refund a **Claude (Anthropic) subscription bought through Google Play** after the Claude account was **banned or suspended**. It works best once **Anthropic has refused the refund in writing**, and it helps you ask Anthropic first if you haven't yet.
 
-The approach: one complete, well-evidenced message to Google Play support, then patience. The skill teaches your agent to:
+The strategy: make your first full message to Google Play support complete and well-evidenced, so that few or no follow-ups are needed. In practice the turning points came from the developer's verbatim written refusal, a minute-precise purchase-to-ban timeline, the original ban notice, a clear argument for who should refund, and annotated exhibits. The skill teaches your agent to:
 
 1. Check that it can read your Gmail and take screenshots. If it can't, it looks up how to add those on *your* agent platform and gives you options.
 2. Check the preconditions: the Play receipt, the ban notice, and Anthropic's written answer. If Anthropic hasn't answered yet, the agent helps you ask them (Claude Help Center or support+android@anthropic.com) before going to Google.
 3. Go through your mailbox once, build a timeline accurate to the minute with timezones, and then ask you for **all** missing screenshots in one message.
 4. Redact everything unrelated (other inbox rows, card digits, other people's data) and add an English caption to every exhibit with the bundled scripts.
-5. Draft **one** complete, polite English message from your real facts (no templates). You review it, and nothing is sent without your explicit approval.
-6. After sending, recognize the usual email sequence (acknowledgement, your message, often a template denial). A template denial is not necessarily final: the agent first waits about a day and checks for a refund receipt, and only then drafts one short escalation reply.
+5. Draft a complete, polite English message from your real facts (no templates). You review it, and nothing is sent without your explicit approval.
+6. After sending, recognize the usual email sequence (acknowledgement, your message, often a template denial). A template denial is not necessarily final: the agent suggests waiting about a day and checking for a refund receipt, and if none arrives, drafts a reply that answers what Google actually said. If Google asks how you want the refund, you choose from the options Google offers.
 
 ## How it works
 

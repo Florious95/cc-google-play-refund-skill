@@ -1,20 +1,20 @@
 ---
 name: cc-google-play-refund
-description: Get Google Play to refund a Claude (Anthropic) subscription that was bought through Google Play when the Claude account was then banned or suspended. Use when the user asks to recover a Google Play charge for Claude Pro or Max after a ban, to write to Google Play support or the Play Help Center about it, or to put together the evidence screenshots. The agent checks the preconditions (and, if Anthropic has not yet refused in writing, helps the user ask Anthropic first), makes one pass through the user's Gmail, asks for all missing screenshots at once, redacts and captions the exhibits, opens the Play Help Center case by email and drafts ONE complete English reply for the user to review. It never sends anything without the user's explicit approval.
+description: Get Google Play to refund a Claude (Anthropic) subscription that was bought through Google Play when the Claude account was then banned or suspended. Use when the user asks to recover a Google Play charge for Claude Pro or Max after a ban, to write to Google Play support or the Play Help Center about it, or to put together the evidence screenshots. The agent checks the preconditions (and, if Anthropic has not yet refused in writing, helps the user ask Anthropic first), makes one pass through the user's Gmail, asks for all missing screenshots at once, redacts and captions the exhibits, opens the Play Help Center case by email and drafts a complete English message for the user to review. It never sends anything without the user's explicit approval.
 license: MIT
 compatibility: Needs direct Gmail access (read, and ideally draft or send) and the ability to take screenshots. Bundled scripts need Python 3.8+ and Pillow. OCR redaction is optional and needs pytesseract.
 ---
 
 # Google Play refund for a banned Claude subscription
 
-The goal is a refund of one Google Play order (`GPA.xxxx-xxxx-xxxx-xxxxx`) for a Claude subscription. It works best once Anthropic has refused the refund in writing; Step 1 helps get that answer if it is missing. Google Play billed the user, so Google Play can refund the order. The working approach is **one complete, well-evidenced, polite message** that gives a Google Play support specialist everything they need in a single read, followed by patience and, at most, one short escalation reply. A refund is never guaranteed; Google decides case by case.
+The goal is a refund of one Google Play order (`GPA.xxxx-xxxx-xxxx-xxxxx`) for a Claude subscription. It works best once Anthropic has refused the refund in writing; Step 1 helps get that answer if it is missing. Google Play billed the user, so Google Play can refund the order. The strategy, learned from experience: **make the first full message complete**, so that a Google Play support specialist has everything they need in a single read. Stating all the necessary information up front speeds things up and keeps follow-up rounds few or none. Some information proved especially effective at turning points: the developer's written refusal quoted verbatim, a minute-precise purchase-to-ban timeline, the original ban notice, a clear argument for who should refund, and annotated exhibits. A refund is never guaranteed; Google decides case by case.
 
 ## Ground rules (apply throughout)
 
 1. **No templates.** This skill deliberately contains no reply template. Support systems detect and deflect boilerplate. Write the message fresh from the user's own facts, in your own words, following the *Required information* list below. Never reuse wording from another case or from examples.
-2. **One message.** Do not plan a series of escalations or point-by-point rebuttal rounds. Put everything into one message. Later messages are only short answers to direct questions from Google, or the single short escalation reply described in Step 7.
+2. **Aim for a complete first message.** The goal is that few or no follow-ups are needed: put all the required information into the first full message instead of spreading it over several replies. Follow-ups are fine when needed; each one should respond to what Google actually said and carry the information that answer needs.
 3. **The user approves before anything is sent.** Show the full draft and the attachment list, then wait for an explicit "send". Never submit a form, send an email or post a reply on your own.
-4. **Ask only for the refund.** The message asks Google Play to refund this order to the original payment method. Do not add alternative demands, deadlines, threats or references to any other process or venue.
+4. **Ask for the refund of this order.** The message asks Google Play to refund this order. Mention a refund destination only if the user has stated one. Do not add alternative demands, deadlines, threats or references to any other process or venue.
 5. **Privacy.** Redact anything not needed for the case (see Step 4). Never put the user's data anywhere except their own drafts and exhibit files.
 6. **English, polite, factual.** Write as the user, in the first person. Be courteous and specific. Do not speculate about why the account was banned and do not argue about the ban itself. The case is about a payment for a service that could not be used.
 
@@ -118,20 +118,20 @@ Every exhibit gets an English banner with its number, the exact time with the ti
 
 A worked, fictional example is in `examples/`: `sample-inbox.png` goes through `redact.py`, then `annotate.py`, and becomes `demo-exhibit.png`. `examples/demo.sh` rebuilds it.
 
-## Step 5 - Compose the ONE message
+## Step 5 - Compose the complete message
 
 Write it from scratch from the case sheet. It must convey all of the following. The order and wording are yours. Use short paragraphs, a compact timeline and plain sentences. No legalese.
 
 **Required information**
 
-- **Identifiers up front:** the order number (`GPA.…`), product, amount, purchase time (to the minute, with timezone), the Google Play account, the payment method (last 4 digits), and the Play support case ID if one exists.
+- **Identifiers up front:** the order number (`GPA.…`), product, amount, purchase time (to the minute, with timezone), the Google Play account, and the Play support case ID if one exists. The payment method as shown on the receipt (for example card type and last 4 digits) helps, if the user is fine sharing it.
 - **The ban:** when it happened (to the minute, with timezone) and the gap since purchase, stated plainly if it is short. Include the ban notice text **verbatim** (or its key sentences, verbatim and marked with "…" where shortened) and any reference ID it contains.
 - **The developer route is exhausted:** say that the user contacted Anthropic as Google Play instructs, with dates. Quote Anthropic's refusal **verbatim** with its date and time, and say who sent it. If there were several refusals or a statement that further messages may not be answered, include that. If the Claude login differs from the Play account, explain the link in one or two sentences and say how Anthropic verified it, if they did.
 - **Why Google Play should refund:** Google Play billed the user and is the merchant of record for this charge (receipt, order number, payment instrument). The developer has refused in writing, so the user has no remaining path except Google Play. The service was not delivered, because the account was banned soon after payment. Any Play cancellation notice or developer statement that supports this belongs here. Make the argument once, calmly.
 - **What has already been done:** earlier Play refund requests and their outcomes, and the developer contacts. One line each.
-- **The request:** ask for a manual review by a specialist and a refund of this order to the original payment method. Thank them.
+- **The request:** ask for a review by a specialist and a refund of this order. If the user has said where they want the refund to go, mention it; otherwise leave the destination open. Thank them.
 - **Exhibit list:** one English sentence per exhibit (number, what it is, its timestamp). Refer to exhibits in the text as "(Exhibit 3)".
-- **Sign-off** with the account email, the same address that sends the message.
+- **Sign-off** as the user prefers (their name and/or the account email). Send from the Google account that made the purchase.
 
 Quality bar before showing the draft:
 
@@ -152,7 +152,7 @@ Present the draft, the exhibit files and the planned channel. Wait for explicit 
    - Choose **email** as the contact method. Chat or phone may be missing for some accounts and regions.
    - Option labels vary by region and language. Read the screen and pick the closest match. Do not guess hidden options.
    - The form may have no free-text description field. That is expected; the confirmation page may simply say that your email has been sent and show a case ID.
-4. **The real message goes in the reply.** Google then emails from `googleplay-support@google.com` with the case ID in the subject (in English, "[<case ID>] Your Google Support Inquiry"). The first email is often a canned refund-policy text that says you can reply for more help. **Reply in that thread** with the full message and all exhibits. That reply is "the one message".
+4. **The real message goes in the reply.** Google then emails from `googleplay-support@google.com` with the case ID in the subject (in English, "[<case ID>] Your Google Support Inquiry"). The first email is often a canned refund-policy text that says you can reply for more help. **Reply in that thread** with the full message and all exhibits. That reply is the complete message from Step 5.
 5. From then on, all communication happens in that email thread. Policy background, for your own understanding only, not for the message: [Google Play refund policies](https://support.google.com/googleplay/answer/2479637).
 
 Do not submit the same request in several channels at once.
@@ -162,7 +162,7 @@ Do not submit the same request in several channels at once.
 Tell the user what was sent, when, where, and with which attachments. Keep the case sheet up to date with each reply's date and time. Then expect this sequence:
 
 1. **Email 1, the acknowledgement.** From `googleplay-support@google.com`, case ID in the subject. It confirms the case was received and is often canned refund-policy text that ends with an invitation to reply. It is not a decision.
-2. **Email 2, the one complete message.** The user's reply in that thread (Step 5 and Step 6).
+2. **Email 2, the complete message.** The user's reply in that thread (Step 5 and Step 6).
 3. **Email 3, very likely a template denial.** Recognize it by phrases like these (quoted from real template denials; wording varies and may be machine-translated):
    - "we do not offer refunds in most cases and many of the refunds offered are considered one-time courtesies" (or "…considered one-time")
    - "we won’t be able to grant your refund request due to our Google Play refund policies"
@@ -177,18 +177,19 @@ Tell the user what was sent, when, where, and with which attachments. Keep the c
 
 **A template denial is not necessarily final.** Example: after the complete message was sent, a template denial pointing to the developer arrived, and about 6 hours later an order-cancellation receipt from `googleplay-noreply@google.com` refunded the full amount.
 
-What to do after a template denial:
+Suggested handling of a template denial:
 
-1. **Wait about 24 hours, then search** for an order cancellation or refund receipt from `googleplay-noreply@google.com` (for example `from:googleplay-noreply@google.com` plus the order number). A refund may arrive only as such a receipt, saying the subscription was cancelled and the payment will be refunded, with the amount, and not as a reply in the case thread. If it is there, tell the user and stop.
-2. **Only if none arrives, draft one short escalation reply** in the same thread. It answers the template's "contact the developer first" and nothing more:
-   - the developer was already contacted (date) and refused in writing: quote the refusal sentence with its date, and point to the exhibit already sent ("Exhibit N");
-   - a request for a specialist review and a refund of this order to the original payment method.
-   Do not re-argue the case, re-attach everything or repeat the timeline. Still no template wording, only the required facts. The user approves it before it is sent.
+1. **Consider waiting about 24 hours, then search** for an order cancellation or refund receipt from `googleplay-noreply@google.com` (for example `from:googleplay-noreply@google.com` plus the order number). A refund may arrive only as such a receipt, saying the subscription was cancelled and the payment will be refunded, with the amount, and not as a reply in the case thread. If it is there, tell the user; no reply is needed.
+2. **If no receipt arrives, draft a reply** in the same thread that responds to what the template actually said. Usually that is "contact the developer first", so the reply:
+   - states that the developer was already contacted (date) and refused in writing, quoting the refusal sentence with its date and pointing to the exhibit already sent ("Exhibit N");
+   - asks for a specialist review and a refund of this order.
+   Keep it focused on the point Google raised. There is usually no need to repeat the whole timeline or re-attach everything, but include whatever that answer needs. Still no template wording. The user approves it before it is sent. If later replies are needed, handle each the same way.
 
 Other replies:
 
 - If Google asks for screenshots of the developer conversation, make sure both the developer's address and the user's address are visible.
-- If Google asks for time or for a detail such as the preferred refund method, answer briefly and only with what is asked, after the user's OK. Never give more than the last 4 digits of a card.
+- **How to receive the refund.** Google may ask how the user wants the refund. In one case Google offered two options: "credit card - recommended, the safest and the fastest method" (confirm "the last 4 digits of the correct credit card" on the account) or "bank account - can be used as an exception" (via a Refund Request Form Google linked). Present the options Google actually offers to the user and let them choose. Share only the details the user chooses to give, and never more than the option requires (for a card, the last 4 digits at most).
+- If Google asks for time or another detail, answer briefly and only with what is asked, after the user's OK.
 - After a refund is confirmed, it can take several business days to appear on the payment method.
 
 ## Bundled scripts
