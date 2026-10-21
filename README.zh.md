@@ -29,12 +29,12 @@
 ### 方式 A：`npx skills`（跨代理安装器）
 
 ```bash
-npx skills add Florious95/google-play-refund-skill            # 当前项目（.agents/skills 以及各代理的专用目录）
-npx skills add Florious95/google-play-refund-skill -g         # 全局，装到你的用户目录
-npx skills add Florious95/google-play-refund-skill -a claude-code -a cursor -a codex
+npx skills add Florious95/google-play-refund-skill                                   # 当前项目：./.agents/skills（Codex、Cursor、Copilot 等）
+npx skills add Florious95/google-play-refund-skill -g                                # 全局：~/.agents/skills
+npx skills add Florious95/google-play-refund-skill -a claude-code -a cursor -a codex # 同时链接到 .claude/skills 供 Claude Code 使用（加 -g 则为 ~/.claude/skills）
 ```
 
-（[vercel-labs/skills](https://github.com/vercel-labs/skills)。需要较新的 Node.js；v1.7.x 要求 Node ≥ 22.20。）
+Claude Code 只读取 `.claude/skills`。如果安装器没有检测到你机器上的 Claude Code，请加上 `-a claude-code`，让它创建 `.claude/skills/google-play-refund` 链接。不带 `-a` 的非交互式 `-g` 运行，可能会对没有全局技能目录的代理报出无害的失败。（[vercel-labs/skills](https://github.com/vercel-labs/skills)。需要较新的 Node.js；v1.7.x 要求 Node ≥ 22.20。Node 版本较旧时可运行 `npx -p node@22 -p skills -- skills add …`。）
 
 ### 方式 B：`install.sh`
 

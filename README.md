@@ -29,12 +29,12 @@ Pick **one** option. The skill folder must be named `google-play-refund` (the sa
 ### Option A - `npx skills` (cross-agent installer)
 
 ```bash
-npx skills add Florious95/google-play-refund-skill            # this project (.agents/skills + agent-specific dirs)
-npx skills add Florious95/google-play-refund-skill -g         # global, for your user
-npx skills add Florious95/google-play-refund-skill -a claude-code -a cursor -a codex
+npx skills add Florious95/google-play-refund-skill                                   # this project: ./.agents/skills (Codex, Cursor, Copilot …)
+npx skills add Florious95/google-play-refund-skill -g                                # global: ~/.agents/skills
+npx skills add Florious95/google-play-refund-skill -a claude-code -a cursor -a codex # also link into .claude/skills for Claude Code (add -g for ~/.claude/skills)
 ```
 
-([vercel-labs/skills](https://github.com/vercel-labs/skills). It needs a recent Node.js; v1.7.x requires Node ≥ 22.20.)
+Claude Code only reads `.claude/skills`. If the installer does not detect Claude Code on your machine, pass `-a claude-code` so it creates the `.claude/skills/google-play-refund` link. Without `-a`, a non-interactive `-g` run may list harmless failures for agents that have no global skills directory. ([vercel-labs/skills](https://github.com/vercel-labs/skills). It needs a recent Node.js; v1.7.x requires Node ≥ 22.20. On older Node you can run `npx -p node@22 -p skills -- skills add …`.)
 
 ### Option B - `install.sh`
 
