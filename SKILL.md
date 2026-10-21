@@ -1,13 +1,13 @@
 ---
-name: google-play-refund
-description: Get Google Play to refund a Claude (Anthropic) subscription that was bought through Google Play when the Claude account was then banned or suspended and Anthropic has already refused a refund in writing. Use when the user asks to recover a Google Play charge for Claude Pro or Max after a ban, to write to Google Play support or the Play Help Center about it, or to put together the evidence screenshots. The agent checks the preconditions, makes one pass through the user's Gmail, asks for all missing screenshots at once, redacts and captions the exhibits, and drafts ONE complete English message for the user to review. It never sends anything without the user's explicit approval.
+name: cc-google-play-refund
+description: Get Google Play to refund a Claude (Anthropic) subscription that was bought through Google Play when the Claude account was then banned or suspended. Use when the user asks to recover a Google Play charge for Claude Pro or Max after a ban, to write to Google Play support or the Play Help Center about it, or to put together the evidence screenshots. The agent checks the preconditions (and, if Anthropic has not yet refused in writing, helps the user ask Anthropic first), makes one pass through the user's Gmail, asks for all missing screenshots at once, redacts and captions the exhibits, opens the Play Help Center case by email and drafts ONE complete English reply for the user to review. It never sends anything without the user's explicit approval.
 license: MIT
 compatibility: Needs direct Gmail access (read, and ideally draft or send) and the ability to take screenshots. Bundled scripts need Python 3.8+ and Pillow. OCR redaction is optional and needs pytesseract.
 ---
 
 # Google Play refund for a banned Claude subscription
 
-The goal is a refund of one Google Play order (`GPA.xxxx-xxxx-xxxx-xxxxx`) for a Claude subscription. Use this skill only when the Claude account was banned or suspended and Anthropic has already refused the refund in writing. Google Play billed the user, so Google Play can refund the order. The working approach is **one complete, well-evidenced, polite message** that gives a Google Play support specialist everything they need in a single read. In two real cases, this approach led to a manual refund. In the second case, essentially that one message was enough. Expect a resolution within about 15 days.
+The goal is a refund of one Google Play order (`GPA.xxxx-xxxx-xxxx-xxxxx`) for a Claude subscription. It works best once Anthropic has refused the refund in writing; Step 1 helps get that answer if it is missing. Google Play billed the user, so Google Play can refund the order. The working approach is **one complete, well-evidenced, polite message** that gives a Google Play support specialist everything they need in a single read. In one real case this approach led to a manual refund: a specialist approved it about three days after the full message, and the refund was submitted for processing two days later. Outcomes are not guaranteed and vary by case and region.
 
 ## Ground rules (apply throughout)
 
@@ -30,15 +30,25 @@ You need both of the following. Check them now, not halfway through:
 
 If Gmail access or screenshots are missing, **do not hardcode an install method.** Find out which agent host you are running in (Claude Code, Cursor, Codex, another IDE or CLI agent, a desktop app). Search the web or that host's docs for the current ways to add a Gmail integration (an official connector, an MCP server, a plugin or extension) and a browser or screenshot tool on that platform. Then give the user 2 to 4 concrete options with their trade-offs (official or third-party, permissions requested, setup effort). Let the user choose and help them set it up. If nothing workable exists, say so plainly. The fallback is that the user takes screenshots by hand following the rules in Step 3, and you still do the rest.
 
-## Step 1 - Preconditions (gate)
+## Step 1 - Preconditions and triage
 
-Confirm all of these from the mailbox before going to Google Play. Tell the user which ones are met.
+Check these from the mailbox before going to Google Play. Tell the user which ones are met.
 
 1. **The Google Play receipt** for the Claude subscription (order number `GPA.…`, amount, the order time, the Google account and the payment method on the receipt).
 2. **The ban or suspension notice** from Anthropic (email and/or the in-app or web notice). The Claude login email may differ from the Google Play account. That is fine, but note both addresses.
-3. **A detailed exchange with Anthropic support that ends in an explicit written refusal** of a refund for this Play purchase. "Explicit" means a sentence such as "we are unable to issue a refund". An automated acknowledgement or "still in queue" does not count.
+3. **A written answer from Anthropic** about refunding this Play order. "Written refusal" means a sentence such as "we are unable to issue a refund". An automated acknowledgement or "still in queue" is not an answer.
 
-**If item 3 is missing, stop here.** Google Play's standard answer is "contact the developer", and without a written refusal the case cannot be closed. Help the user get that refusal first. Find the developer contact in the Play Store listing or the receipt, and use Anthropic's support channels. Ask for a refund of the specific Play order (order number, date, amount, both account emails, the time of the ban). If Anthropic asks for proof of account ownership, such as CCing the Claude login address, do it. Wait for the written answer. Come back to Step 2 once a clear refusal is in the mailbox.
+**Triage when item 3 is missing.** It matters because Google Play's standard first answer is "contact the developer". Help the user ask Anthropic first:
+
+- Channels: the Claude Help Center at https://support.claude.com (signed in: name or initials, then **Get help**, which opens the support messenger; the [refund article](https://support.claude.com/en/articles/12386328-request-a-refund-for-a-paid-claude-plan) describes the flow), or email **support+android@anthropic.com** (the developer contact on the Claude Play Store listing). If the account itself should be reinstated, that is a separate appeal: log in at claude.ai with the banned account and use the appeal form ([Safeguards warnings and appeals](https://support.claude.com/en/articles/8241253-safeguards-warnings-and-appeals)).
+- Content: ask for a refund of this specific order. Include the order number, purchase and ban dates and times, amount and currency, the Play account email and the Claude login email, and a one-line reason.
+- If Anthropic asks for proof of ownership, such as CCing the Google Play email, do exactly that.
+- A written answer usually arrives within days. Then:
+  - **Anthropic refunds it:** done. This skill is not needed.
+  - **Anthropic refuses in writing:** continue with Step 2.
+  - **No answer after about 7 days and one polite follow-up:** the user can still go to Google Play, documenting the request and the follow-up with dates. The case is weaker but possible.
+
+**Not bought through Google Play?** This skill does not apply. iOS (App Store): Apple refunds, at https://reportaproblem.apple.com. Web (claude.ai): ask Anthropic through the Claude Help Center (Get help, then the refund request).
 
 ## Step 2 - One exploration pass of the mailbox
 
@@ -132,23 +142,26 @@ Quality bar before showing the draft:
 
 ## Step 6 - Submit through the Google Play Help Center (after approval)
 
-Present the draft, the exhibit files and the planned channel. Wait for explicit approval, then send from the **Google account that made the purchase**.
+Present the draft, the exhibit files and the planned channel. Wait for explicit approval. Everything below happens while signed in with the **Google account that made the purchase**.
 
-Pick the channel as follows:
-
-1. **A Google Play support email thread already exists** (from `googleplay-support@google.com`, with a case ID in the subject): **reply in that thread** with the message and all exhibits attached. Both real cases were resolved this way.
-2. **No case exists yet:** open one through the Google Play Help Center.
-   - Self-service refund request: https://support.google.com/googleplay/workflow/9813244, or play.google.com, then Profile, then **Payments & subscriptions**, then **Budget & order history**, then **Report a problem** on the order ([Request a refund on Google Play](https://support.google.com/googleplay/answer/15574897)). A request that is denied with "contact the developer" is normal at this stage.
-   - Contact Google Play support: https://support.google.com/googleplay/gethelp (sign-in required; the options depend on the account and region).
-   - If the form accepts long text and attachments, put the full message there. Otherwise give a short, accurate summary (order number, ban shortly after purchase, developer refused in writing, request for manual review). When the case email arrives, reply to it with the full message and exhibits. That reply is "the one message".
-3. Policy background, for your own understanding only. Do not paste it into the message: [Google Play refund policies](https://support.google.com/googleplay/answer/2479637).
+1. **A Google Play support email thread already exists** (from `googleplay-support@google.com`, with a case ID in the subject): **reply in that thread** with the message and all exhibits attached. Skip the rest of this step.
+2. **Optional earlier step, self-service refund request:** https://support.google.com/googleplay/workflow/9813244, or play.google.com, then Profile, then **Payments & subscriptions**, then **Budget & order history**, then **Report a problem** on the order ([Request a refund on Google Play](https://support.google.com/googleplay/answer/15574897)). For purchases older than 48 hours this is often denied automatically with "contact the developer". That is normal and is not the case you are building.
+3. **Open the case: Google Play Help, Contact Us.** Go to https://support.google.com/googleplay/gethelp (sign-in required).
+   - Choose the issue about a purchase, order or subscription refund. Select the Claude order if asked.
+   - Choose the reason closest to the facts, such as the item not working or not being delivered as described.
+   - Choose **email** as the contact method. Chat or phone may be missing for some accounts and regions.
+   - Option labels vary by region and language. Read the screen and pick the closest match. Do not guess hidden options.
+   - The form may have no free-text description field. That is expected. In a real case the confirmation page just said "Your email has been sent" with a case ID.
+4. **The real message goes in the reply.** Google then emails from `googleplay-support@google.com` with the case ID in the subject (in English, "[<case ID>] Your Google Support Inquiry"). The first email is often a canned refund-policy text that says you can reply for more help. **Reply in that thread** with the full message and all exhibits. That reply is "the one message".
+5. From then on, all communication happens in that email thread. Policy background, for your own understanding only, not for the message: [Google Play refund policies](https://support.google.com/googleplay/answer/2479637).
 
 Do not submit the same request in several channels at once.
 
 ## Step 7 - After sending
 
 - Tell the user what was sent, when, where, and with which attachments.
-- In the real cases, the escalation team first asked for 24 to 48 hours. Then they said a manual refund could be requested and asked for the **preferred refund method**. Answer such questions briefly and only with what is asked, for example "please refund it to the card ending in NNNN that was charged for this order". Get the user's OK before replying. Then a confirmation arrived saying the refund had been submitted, with 5 to 10 business days to appear.
+- In the real cases, the escalation team first asked for 24 to 48 hours. Then they said a manual refund could be requested and asked for the **preferred refund method**. Answer such questions briefly and only with what is asked, for example "please refund it to the card ending in NNNN that was charged for this order". Get the user's OK before replying. Then a confirmation arrived saying the refund had been submitted for processing, with 5 to 10 business days to appear.
+- If Google asks for screenshots of the developer conversation, make sure both the developer's address and the user's address are visible.
 - If a generic reply arrives that does not engage with the facts, write one short, polite reply. Point to the earlier message and its exhibits and ask for a specialist review. Do not rewrite the whole case and do not start a back-and-forth.
 - Keep the case sheet up to date with each reply's date and time.
 

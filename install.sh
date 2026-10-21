@@ -1,29 +1,29 @@
 #!/usr/bin/env bash
-# Install the google-play-refund skill for coding agents.
+# Install the cc-google-play-refund skill for coding agents.
 #
-#   ./install.sh --project          ./.agents/skills/google-play-refund   (Codex, Cursor, GitHub Copilot, Gemini CLI ... in this repo)
-#   ./install.sh --global           ~/.agents/skills/google-play-refund   (Codex, Cursor: all projects on this machine)
-#   ./install.sh --claude           ~/.claude/skills/google-play-refund   (Claude Code personal; Cursor also reads it)
-#   ./install.sh --claude --project ./.claude/skills/google-play-refund   (Claude Code, this project only)
-#   ./install.sh --dir PATH         PATH/google-play-refund               (any other skills directory)
+#   ./install.sh --project          ./.agents/skills/cc-google-play-refund   (Codex, Cursor, GitHub Copilot, Gemini CLI ... in this repo)
+#   ./install.sh --global           ~/.agents/skills/cc-google-play-refund   (Codex, Cursor: all projects on this machine)
+#   ./install.sh --claude           ~/.claude/skills/cc-google-play-refund   (Claude Code personal; Cursor also reads it)
+#   ./install.sh --claude --project ./.claude/skills/cc-google-play-refund   (Claude Code, this project only)
+#   ./install.sh --dir PATH         PATH/cc-google-play-refund               (any other skills directory)
 #
 # Several targets can be combined, e.g. --global --claude.
 # Remote one-liner:
 #   curl -fsSL https://raw.githubusercontent.com/Florious95/cc-google-play-refund-skill/main/install.sh | bash -s -- --claude
 set -euo pipefail
 
-NAME="google-play-refund"
+NAME="cc-google-play-refund"
 REPO_URL="${GPRS_REPO_URL:-https://github.com/Florious95/cc-google-play-refund-skill.git}"
 FILES=(SKILL.md scripts examples)
 
 usage() {
   cat <<'USAGE'
 Usage: install.sh [--project] [--global] [--claude] [--dir PATH] [--force]
-  --project           ./.agents/skills/google-play-refund  (Codex, Cursor, Copilot, Gemini CLI ...)
-  --global            ~/.agents/skills/google-play-refund  (Codex, Cursor; every project)
-  --claude            ~/.claude/skills/google-play-refund  (Claude Code personal; Cursor reads it too)
-  --claude --project  ./.claude/skills/google-play-refund  (Claude Code, this project)
-  --dir PATH          PATH/google-play-refund
+  --project           ./.agents/skills/cc-google-play-refund  (Codex, Cursor, Copilot, Gemini CLI ...)
+  --global            ~/.agents/skills/cc-google-play-refund  (Codex, Cursor; every project)
+  --claude            ~/.claude/skills/cc-google-play-refund  (Claude Code personal; Cursor reads it too)
+  --claude --project  ./.claude/skills/cc-google-play-refund  (Claude Code, this project)
+  --dir PATH          PATH/cc-google-play-refund
   --force             replace an existing install
 USAGE
   exit "${1:-0}"
