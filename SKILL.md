@@ -14,7 +14,7 @@ The goal is a refund of one Google Play order (`GPA.xxxx-xxxx-xxxx-xxxxx`) for a
 1. **No templates.** This skill deliberately contains no reply template. Support systems detect and deflect boilerplate. Write the message fresh from the user's own facts, in your own words, following the *Required information* list below. Never reuse wording from another case or from examples.
 2. **Aim for a complete first message.** The goal is that few or no follow-ups are needed: put all the required information into the first full message instead of spreading it over several replies. Follow-ups are fine when needed; each one should respond to what Google actually said and carry the information that answer needs.
 3. **The user approves before anything is sent.** Show the full draft and the attachment list, then wait for an explicit "send". Never submit a form, send an email or post a reply on your own.
-4. **Ask for the refund of this order.** The message asks Google Play to refund this order. Mention a refund destination only if the user has stated one. Do not add alternative demands, deadlines, threats or references to any other process or venue.
+4. **Ask for the refund of this order, to the destination the user chose.** The user picks the refund destination (Step 6); the message states it. Do not add alternative demands, deadlines, threats or references to any other process or venue.
 5. **Privacy.** Redact anything not needed for the case (see Step 4). Never put the user's data anywhere except their own drafts and exhibit files.
 6. **English, polite, factual.** Write as the user, in the first person. Be courteous and specific. Do not speculate about why the account was banned and do not argue about the ban itself. The case is about a payment for a service that could not be used.
 
@@ -129,7 +129,7 @@ Write it from scratch from the case sheet. It must convey all of the following. 
 - **The developer route is exhausted:** say that the user contacted Anthropic as Google Play instructs, with dates. Quote Anthropic's refusal **verbatim** with its date and time, and say who sent it. If there were several refusals or a statement that further messages may not be answered, include that. If the Claude login differs from the Play account, explain the link in one or two sentences and say how Anthropic verified it, if they did.
 - **Why Google Play should refund:** Google Play billed the user and is the merchant of record for this charge (receipt, order number, payment instrument). The developer has refused in writing, so the user has no remaining path except Google Play. The service was not delivered, because the account was banned soon after payment. Any Play cancellation notice or developer statement that supports this belongs here. Make the argument once, calmly.
 - **What has already been done:** earlier Play refund requests and their outcomes, and the developer contacts. One line each.
-- **The request:** ask for a review by a specialist and a refund of this order. If the user has said where they want the refund to go, mention it; otherwise leave the destination open. Thank them.
+- **The request:** ask for a review by a specialist and a refund of this order, and state the refund destination the user chose (see *Refund destination* in Step 6), with exactly the details Google needs for it. Then Google does not need another round to ask. Thank them.
 - **Exhibit list:** one English sentence per exhibit (number, what it is, its timestamp). Refer to exhibits in the text as "(Exhibit 3)".
 - **Sign-off** as the user prefers (their name and/or the account email). Send from the Google account that made the purchase.
 
@@ -144,7 +144,7 @@ Quality bar before showing the draft:
 
 Present the draft, the exhibit files and the planned channel. Wait for explicit approval. Everything below happens while signed in with the **Google account that made the purchase**.
 
-1. **A Google Play support email thread already exists** (from `googleplay-support@google.com`, with a case ID in the subject): **reply in that thread** with the message and all exhibits attached. Skip the rest of this step.
+1. **A Google Play support email thread already exists** (from `googleplay-support@google.com`, with a case ID in the subject): first ask the user for the refund destination (item 5 below), then **reply in that thread** with the message and all exhibits attached. Skip the rest of this step.
 2. **Optional earlier step, self-service refund request:** https://support.google.com/googleplay/workflow/9813244, or play.google.com, then Profile, then **Payments & subscriptions**, then **Budget & order history**, then **Report a problem** on the order ([Request a refund on Google Play](https://support.google.com/googleplay/answer/15574897)). For purchases older than 48 hours this is often denied automatically with "contact the developer". That is normal and is not the case you are building.
 3. **Open the case: Google Play Help, Contact Us.** Go to https://support.google.com/googleplay/gethelp (sign-in required).
    - Choose the issue about a purchase, order or subscription refund. Select the Claude order if asked.
@@ -152,8 +152,20 @@ Present the draft, the exhibit files and the planned channel. Wait for explicit 
    - Choose **email** as the contact method. Chat or phone may be missing for some accounts and regions.
    - Option labels vary by region and language. Read the screen and pick the closest match. Do not guess hidden options.
    - The form may have no free-text description field. That is expected; the confirmation page may simply say that your email has been sent and show a case ID.
-4. **The real message goes in the reply.** Google then emails from `googleplay-support@google.com` with the case ID in the subject (in English, "[<case ID>] Your Google Support Inquiry"). The first email is often a canned refund-policy text that says you can reply for more help. **Reply in that thread** with the full message and all exhibits. That reply is the complete message from Step 5.
-5. From then on, all communication happens in that email thread. Policy background, for your own understanding only, not for the message: [Google Play refund policies](https://support.google.com/googleplay/answer/2479637).
+4. **Email 1 arrives.** Google emails from `googleplay-support@google.com` with the case ID in the subject (in English, "[<case ID>] Your Google Support Inquiry"). It is often a canned refund-policy text that says you can reply for more help.
+5. **Ask the user for the refund destination now**, before sending the reply. A manual refund needs a destination, and Google asks for one if the message does not state it, which costs a round. Example of how Google asked in a real case:
+
+   > In order to do so, we will need to know your preferred payment method:
+   > - credit card - recommended, the safest and the fastest method
+   > - bank account - can be used as an exception
+   >
+   > If you want us to refund the order to one of the credit cards added to your account, kindly get back to us once you have confirmed the last 4 digits of the correct credit card where the refund will be processed.
+   >
+   > In case you want the refund to be issued to your bank account, please fill out this Refund Request Form.
+
+   Present these choices to the user (a card on the Google account, usually the one that was charged, or a bank account) and let them choose. Collect only what that choice requires: for a card, its type and last 4 digits; for a bank account, nothing in the email, since the details go into Google's own form when Google sends it. Put the choice in the message, for example "Please refund this order to the Visa card ending in NNNN on my account, which was charged for it."
+6. **The real message goes in the reply.** **Reply in that thread** with the complete message from Step 5 (including the chosen refund destination) and all exhibits.
+7. From then on, all communication happens in that email thread. Policy background, for your own understanding only, not for the message: [Google Play refund policies](https://support.google.com/googleplay/answer/2479637).
 
 Do not submit the same request in several channels at once.
 
@@ -162,7 +174,7 @@ Do not submit the same request in several channels at once.
 Tell the user what was sent, when, where, and with which attachments. Keep the case sheet up to date with each reply's date and time. Then expect this sequence:
 
 1. **Email 1, the acknowledgement.** From `googleplay-support@google.com`, case ID in the subject. It confirms the case was received and is often canned refund-policy text that ends with an invitation to reply. It is not a decision.
-2. **Email 2, the complete message.** The user's reply in that thread (Step 5 and Step 6).
+2. **Email 2, the complete message.** The user's reply in that thread (Step 5 and Step 6), already stating the refund destination the user chose.
 3. **Email 3, very likely a template denial.** Recognize it by phrases like these (quoted from real template denials; wording varies and may be machine-translated):
    - "we do not offer refunds in most cases and many of the refunds offered are considered one-time courtesies" (or "…considered one-time")
    - "we won’t be able to grant your refund request due to our Google Play refund policies"
@@ -188,7 +200,7 @@ Suggested handling of a template denial:
 Other replies:
 
 - If Google asks for screenshots of the developer conversation, make sure both the developer's address and the user's address are visible.
-- **How to receive the refund.** Google may ask how the user wants the refund. In one case Google offered two options: "credit card - recommended, the safest and the fastest method" (confirm "the last 4 digits of the correct credit card" on the account) or "bank account - can be used as an exception" (via a Refund Request Form Google linked). Present the options Google actually offers to the user and let them choose. Share only the details the user chooses to give, and never more than the option requires (for a card, the last 4 digits at most).
+- **If Google still asks how to receive the refund** (for example because the destination changed), confirm the user's choice and answer with only the details the chosen option requires (for a card, the last 4 digits at most).
 - If Google asks for time or another detail, answer briefly and only with what is asked, after the user's OK.
 - After a refund is confirmed, it can take several business days to appear on the payment method.
 

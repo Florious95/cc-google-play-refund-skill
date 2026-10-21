@@ -11,11 +11,11 @@ The strategy: make your first full message to Google Play support complete and w
 3. Go through your mailbox once, build a timeline accurate to the minute with timezones, and then ask you for **all** missing screenshots in one message.
 4. Redact everything unrelated (other inbox rows, card digits, other people's data) and add an English caption to every exhibit with the bundled scripts.
 5. Draft a complete, polite English message from your real facts (no templates). You review it, and nothing is sent without your explicit approval.
-6. After sending, recognize the usual email sequence (acknowledgement, your message, often a template denial). A template denial is not necessarily final: the agent suggests waiting about a day and checking for a refund receipt, and if none arrives, drafts a reply that answers what Google actually said. If Google asks how you want the refund, you choose from the options Google offers.
+6. After sending, recognize the usual email sequence (acknowledgement, your message, often a template denial). A template denial is not necessarily final: the agent suggests waiting about a day and checking for a refund receipt, and if none arrives, drafts a reply that answers what Google actually said.
 
 ## How it works
 
-You open a case at [Google Play Help → Contact Us](https://support.google.com/googleplay/gethelp), signed in with the Google account that paid. Pick the refund issue for the order and **email** as the contact method. The form may have no description field. Google then emails you from `googleplay-support@google.com` with a case ID in the subject. The agent's complete message and exhibits go in **your reply to that email**, and the rest of the conversation stays in that thread. The self-service refund form is an optional earlier step and is often denied automatically. Option labels vary by region and language.
+You open a case at [Google Play Help → Contact Us](https://support.google.com/googleplay/gethelp), signed in with the Google account that paid. Pick the refund issue for the order and **email** as the contact method. The form may have no description field. Google then emails you from `googleplay-support@google.com` with a case ID in the subject. When it arrives, the agent asks you where you want the refund (a card on your Google account or a bank account, the choices Google offers), so the message can state it. The agent's complete message and exhibits go in **your reply to that email**, and the rest of the conversation stays in that thread. The self-service refund form is an optional earlier step and is often denied automatically. Option labels vary by region and language.
 
 > This is not legal or financial advice, and a refund is not guaranteed. Google decides each request case by case.
 
