@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+# never commit real case material
+case/
+*.case.md
